@@ -1,0 +1,9 @@
+header {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.loc {
+  transform: scale(1.5);
+  cursor: pointer;
+}

@@ -1,0 +1,16 @@
+main,
+.containerInfo {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.containerInfo {
+  padding: 20px;
+  background: rgba(120, 204, 240, 0.3);
+  border-radius: 10px;
+}
+
+main span {
+  font-size: 100px;
+}
