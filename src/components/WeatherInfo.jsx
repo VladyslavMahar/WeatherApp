@@ -13,8 +13,8 @@ const WeatherInfo = (props) => {
             info={Math.round(props.data.main.temp - 273)}
             unit="°C"
           />
-        ) : props.data === 404 ? (
-          <h2>City not found</h2>
+        ) : props.data.status === 404 ? (
+          <h2>{props.data.statusText}</h2>
         ) : (
           <h2>Select your location</h2>
         )}

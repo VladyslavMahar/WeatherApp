@@ -3,26 +3,44 @@ import Header from "./components/Header";
 import WeatherDetails from "./components/WeatherDetails";
 import WeatherInfo from "./components/WeatherInfo";
 import Servise from "./components/API/Servis";
+import { useLocation } from "./hooks/useLocation";
+import Loader from "./components/UI/Loader/Loader";
 
 function App() {
   const [location, setLocation] = useState("");
   const [data, setData] = useState({});
   const time = new Date();
+  const coords = useLocation();
+  const [isloading, setIsLoading] = useState(false);
+
   const getWeather = async (e) => {
     if (e.key === "Enter" && location) {
-      await Servise.getWeatherNow(location)
-        .then((res) => setData(res))
-        .catch((e) => setData(e.response.status))
-        .finally(() => setLocation(""));
+      try {
+        const response = await Servise.getWeatherNow(location);
+        setIsLoading(true);
+        setData(response);
+        setLocation("");
+        setIsLoading(false);
+      } catch (e) {
+        setData(e.response);
+      }
     }
   };
 
-  const myLoc = () => {
-    Servise.getWeatherNowMyLoc(setData);
+  const myLoc = async () => {
+    try {
+      const response = await Servise.getWeatherNowMyLoc(coords);
+      setIsLoading(true);
+      setData(response);
+      setIsLoading(false);
+    } catch (e) {
+      alert(e);
+    }
   };
   useEffect(() => {
-    myLoc();
-  }, []);
+    if (coords.latitude) myLoc();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [coords.latitude]);
 
   return (
     <div
@@ -36,7 +54,7 @@ function App() {
         location={location}
         setLocation={setLocation}
       />
-      <WeatherInfo data={data} />
+      {isloading ? <Loader /> : <WeatherInfo data={data} />}
       <WeatherDetails data={data} />
     </div>
   );

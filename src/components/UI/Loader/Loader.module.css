@@ -1,0 +1,36 @@
+.loader {
+  display: flex;
+  justify-content: space-between;
+  height: 50px;
+  width: 50px;
+  margin: auto auto;
+}
+.loader div {
+  background: rgb(21, 170, 212, 0.5);
+  height: 15px;
+  width: 15px;
+  border-radius: 10px;
+}
+.loader .box1 {
+  animation: loader 1.2s infinite;
+}
+.loader .box2 {
+  animation: loader 1.8s infinite;
+}
+.loader .box3 {
+  animation: loader 1.4s infinite;
+}
+@keyframes loader {
+  0% {
+    transform: scale(1);
+    border-radius: 5px;
+  }
+  50% {
+    transform: scale(0);
+    border-radius: 50%;
+  }
+  100% {
+    transform: scale(1);
+    border-radius: 5px;
+  }
+}

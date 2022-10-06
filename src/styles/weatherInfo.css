@@ -4,6 +4,7 @@ main,
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  animation: open 1s;
 }
 .containerInfo {
   padding: 20px;
@@ -13,4 +14,12 @@ main,
 
 main span {
   font-size: 100px;
+}
+@keyframes open {
+  from {
+    transform: scale(0);
+  }
+  to {
+    transform: scale(1);
+  }
 }

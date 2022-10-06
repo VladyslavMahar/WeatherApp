@@ -5,25 +5,15 @@ import axios from "axios";
 export default class Servise {
   static async getWeatherNow(location) {
     const response = await axios.get(
-      `https://api.openweathermap.org/data/2.5/weather?q=${location}&appid={API KEY}`
+      `https://api.openweathermap.org/data/2.5/weather?q=${location}&appid=a8d344e129de026cf1bf230de1f6142f`
     );
-
     return response.data;
   }
 
-  static getWeatherNowMyLoc(setData) {
-    const successCall = (position) => {
-      const { latitude, longitude } = position.coords;
-      fetch(
-        `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid={API KEY}`
-      )
-        .then((res) => res.json())
-        .then((res) => setData(res));
-    };
-    const errorCall = (error) => {
-      alert(error.mesage);
-    };
-
-    navigator.geolocation.getCurrentPosition(successCall, errorCall);
+  static async getWeatherNowMyLoc(coords) {
+    const response = await axios.get(
+      `https://api.openweathermap.org/data/2.5/weather?lat=${coords.latitude}&lon=${coords.longitude}&appid=a8d344e129de026cf1bf230de1f6142f`
+    );
+    return response.data;
   }
 }
