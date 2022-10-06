@@ -19,10 +19,11 @@ function App() {
         const response = await Servise.getWeatherNow(location);
         setIsLoading(true);
         setData(response);
-        setLocation("");
-        setIsLoading(false);
       } catch (e) {
         setData(e.response);
+      } finally {
+        setLocation("");
+        setIsLoading(false);
       }
     }
   };
@@ -32,9 +33,10 @@ function App() {
       const response = await Servise.getWeatherNowMyLoc(coords);
       setIsLoading(true);
       setData(response);
-      setIsLoading(false);
     } catch (e) {
       alert(e);
+    } finally {
+      setIsLoading(false);
     }
   };
   useEffect(() => {
