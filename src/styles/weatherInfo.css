@@ -4,22 +4,30 @@ main,
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  animation: open 1s;
 }
 .containerInfo {
   padding: 20px;
   background: rgba(120, 204, 240, 0.3);
   border-radius: 10px;
+  box-shadow: 0px 0px 5px 1px rgba(15, 73, 199, 0.4);
+  animation: pulse 1s infinite;
+}
+.containerInfo:hover {
+  animation: none;
 }
 
 main span {
   font-size: 100px;
 }
-@keyframes open {
-  from {
-    transform: scale(0);
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0px 0px 0px 0px rgba(15, 73, 199, 0.4);
   }
-  to {
-    transform: scale(1);
+  70% {
+    box-shadow: 0 0 10px 10px rgba(15, 73, 199, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0px rgba(15, 73, 199, 0);
   }
 }
