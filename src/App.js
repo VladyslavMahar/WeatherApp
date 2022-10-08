@@ -10,7 +10,7 @@ function App() {
   const [location, setLocation] = useState("");
   const [data, setData] = useState({});
   const time = new Date();
-  const coords = useLocation();
+  const coords = useLocation({});
   const [isloading, setIsLoading] = useState(false);
 
   const getWeather = async (e) => {
@@ -39,9 +39,10 @@ function App() {
       setIsLoading(false);
     }
   };
+
   useEffect(() => {
-    if (coords.latitude) myLoc();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    if (coords.latitude !== 0) myLoc();
+    // eslint-disable-next-line
   }, [coords.latitude]);
 
   return (
